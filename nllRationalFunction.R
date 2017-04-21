@@ -3,14 +3,16 @@
 #Le paramètre model inclu les fonctions: "hyperbolic", "michaelis-menten", "hollingIII" et "hollingIV)
 nllRationalFunction <- function(pars,xObs,yObs,model)
 {
-	if(model == "hyperbolic")
-	{
 	#Unpack parameters
 	a <- pars[1]
 	b <- pars[2]
+	c <- pars[3]
 	sigma <- pars[4]
+	
+	if(model == "hyperbolic")
+	{
 	#Calculate predictions
-	yFit <- a /(b + xObs) #Hyperbolic
+	yFit <- a /(b + xObs)
 	#Calculate error 
 	e <- yObs - yFit
 	#Calculate and return NLL
@@ -18,12 +20,8 @@ nllRationalFunction <- function(pars,xObs,yObs,model)
 	
 	if(model == "michaelis-menten")
 	{
-		#Unpack parameters
-		a <- pars[1]
-		b <- pars[2]
-		sigma <- pars[4]
 		#Calculate predictions
-		yFit <- a * xObs /(b + xObs) #Hyperbolic
+		yFit <- a * xObs /(b + xObs)
 		#Calculate error 
 		e <- yObs - yFit
 		#Calculate and return NLL
@@ -31,25 +29,16 @@ nllRationalFunction <- function(pars,xObs,yObs,model)
 	
 	if(model == "hollingIII")
 	{
-		#Unpack parameters
-		a <- pars[1]
-		b <- pars[2]
-		sigma <- pars[4]
 		#Calculate predictions
-		yFit <- a*xObs^2/(b^2+xObs^2) #Holling type III
+		yFit <- a*xObs^2/(b^2+xObs^2)
 		#Calculate error 
 		e <- yObs - yFit
 	}
 	
 	if(model == "hollingIV")
 	{
-		#Unpack parameters
-		a <- pars[1]
-		b <- pars[2]
-		c <- pars[3]
-		sigma <- pars[4]
 		#Calculate predictions
-		yFit <- a * xObs^2/(b + c * xObs + xObs^2) #Holling type III
+		yFit <- a * xObs^2/(b + c * xObs + xObs^2)
 		#Calculate error 
 		e <- yObs - yFit
 	}
