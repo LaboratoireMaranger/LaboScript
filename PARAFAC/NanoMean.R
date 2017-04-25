@@ -25,7 +25,6 @@ NanoMean = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), 
 	  file.list[[i]] = paste(file.dir[i],"/",list.files(file.dir[i]),sep="")
 	}
 	file.data = unlist(file.list)
-	#file.data = choose.files(caption="Select nano file(s)")
   
 	if(length(file.data) > 1)
 	{
