@@ -1,0 +1,18 @@
+InnerFilter = function(path, cube, excitation = c(220,450,5), emission = c(230, 600, 2),pathlength=1)
+{
+	wlex <- seq(excitation[1], excitation[2], excitation[3])
+	wlem <- seq(emission[1], emission[2], emission[3])
+
+	file.data = choose.files(caption="Select absorbance file(s)")
+	for(i in 1:length(file.data))
+	{
+		Abs = read.table(file.data[i],skip=1,header=2,sep=",")
+		WV <- Abs[,1]
+		Absex = sapply(wlex,function(x){return(subset(Abs[,2],WV==x))})
+		Absem = sapply(wlem,function(x){return(subset(Abs[,2],WV==x))})
+		Amat = outer(Absex,Absem,'+')
+		Amat2 = 10^(-0.5*pathlength*Amat)
+		cube[,,i] = cube[,,i]/Amat2
+	}
+return(cube)
+}
