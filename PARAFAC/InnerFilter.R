@@ -3,7 +3,19 @@ InnerFilter = function(path, cube, excitation = c(220,450,5), emission = c(230, 
 	wlex <- seq(excitation[1], excitation[2], excitation[3])
 	wlem <- seq(emission[1], emission[2], emission[3])
 
-	file.data = choose.files(caption="Select absorbance file(s)")
+	file.dir = list.files()
+	nano.temp = grep("nano", file.dir)
+	fdom.temp = grep("FDOM",file.dir)
+	file.dir = file.dir[-nano.temp]
+	file.dir = file.dir[-fdom.temp]
+	file.list = list()
+	  
+	for(i in 1:length(file.dir))
+	{
+	  file.list[[i]] = paste(file.dir[i],"/",list.files(file.dir[i]),sep="")
+	}
+	file.data = unlist(file.list)
+	#file.data = choose.files(caption="Select absorbance file(s)")
 	for(i in 1:length(file.data))
 	{
 		Abs = read.table(file.data[i],skip=1,header=2,sep=",")

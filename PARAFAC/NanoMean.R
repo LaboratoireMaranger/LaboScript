@@ -12,7 +12,20 @@ NanoMean = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), 
 	data.list <- list()
 	index = 0
 	list.length = 0
-	file.data = choose.files(caption="Select nano file(s)")
+	
+	file.dir = list.files()
+	fdom.temp = grep("FDOM", file.dir)
+	cdom.temp = grep("CDOM",file.dir)
+	file.dir = file.dir[-fdom.temp]
+	file.dir = file.dir[-cdom.temp]
+	file.list = list()
+
+	for(i in 1:length(file.dir))
+	{
+	  file.list[[i]] = paste(file.dir[i],"/",list.files(file.dir[i]),sep="")
+	}
+	file.data = unlist(file.list)
+	#file.data = choose.files(caption="Select nano file(s)")
   
 	if(length(file.data) > 1)
 	{
