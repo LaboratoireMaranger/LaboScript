@@ -25,7 +25,7 @@
 
 
 
-PARAFAC.cube.design = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, samplepercsv = 1,Subtract.Blank = T, RU = T, rm.corner=T, EmEx.cor = T, Inner=T, split="_")
+PARAFAC.cube.design = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, samplepercsv = 1,Subtract.Blank = T, RU = T, rm.corner=T, EmEx.cor = T, Inner=T,pathlength = 1, split="_")
 {
   wlex <- seq(excitation[1], excitation[2], excitation[3])
   wlem <- seq(emission[1], emission[2], emission[3])
@@ -117,7 +117,7 @@ PARAFAC.cube.design = function(path, excitation = c(220,450,5), emission = c(230
 	}
 	if(Inner)
 	{
-	  cube = InnerFilter(path, cube, excitation = c(220,450,5), emission = c(230, 600, 2),pathlength=1)
+	  cube = InnerFilter(path, cube, excitation, emission, pathlength)
 	}
 
 	if(rm.corner)
@@ -135,6 +135,7 @@ PARAFAC.cube.design = function(path, excitation = c(220,450,5), emission = c(230
     {
         Raman = NanoMean(path, excitation, emission, EMCOL, split=split,RU=T)
     }
+    
     RAMANInt = plot.integrate.RAMAN(Raman, maxF, graph=F)
     cube.RU=cube
     for(k in 1:length(cube[1,1,]))
@@ -144,8 +145,8 @@ PARAFAC.cube.design = function(path, excitation = c(220,450,5), emission = c(230
     
     if(EmEx.cor)
     {
-      file.Em = read.csv("F:/Richard/PARAFAC/FDOM/2016/Emcorr_220 to 600.csv")
-      file.Ex = read.csv("F:/Richard/PARAFAC/FDOM/2016/Excorr.csv")
+      file.Em = read.csv("D:/Université/GitHub/Paysage-brassicole/Emcorr_220 to 600.csv")
+      file.Ex = read.csv("D:/Université/GitHub/Paysage-brassicole/Excorr.csv")
       Ex.cor = as.numeric(na.omit(file.Ex[match(round(file.Ex[,1]),wlex),2]))
       Em.cor = t(as.numeric(na.omit(file.Em[match(round(file.Em[,1]),wlem),2])))
       Cor.mat = Ex.cor %*% Em.cor
