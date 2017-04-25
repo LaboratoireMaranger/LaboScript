@@ -25,7 +25,7 @@
 
 
 
-PARAFAC.cube.design = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, samplepercsv = 1,Subtract.Blank = T, RU = T, rm.corner=T, EmEx.cor = T, Inner=T, rm.scat = T, split="_")
+PARAFAC.cube.design = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, samplepercsv = 1,Subtract.Blank = T, RU = T, rm.corner=T, EmEx.cor = T, Inner=T, split="_")
 {
   wlex <- seq(excitation[1], excitation[2], excitation[3])
   wlem <- seq(emission[1], emission[2], emission[3])
@@ -153,108 +153,25 @@ PARAFAC.cube.design = function(path, excitation = c(220,450,5), emission = c(230
       for(k in 1:length(cube.RU[1,1,]))
       {
         cube.RU.EmEx[,,k] = cube.RU[,,k] * Cor.mat
-      }
-      if(rm.scat)
-      {
-        cube.RU.EmEx.Scat = cube.RU.EmEx
-        for(k in 1:length(cube.RU.EmEx[1,1,]))
-        {
-          for(i in 1:length(cube.RU.EmEx[,1,1]))
-          {
-            #cube.RU.EmEx.Scat[i,wlem =>(2*wlex[i]-15),k]=NA #Removes top left data after 2nd order Raman
-            #cube.RU.EmEx.Scat[i,wlem<=(wlex[i]+14),k]=NA #Removes bottom right data below 1st order Rayleigh
-            cube.RU.EmEx.Scat[i,wlem<=(wlex[i]+10) & wlem >=(wlex[i]-10),k]=NA #Removes band of 1st order Rayleigh
-            cube.RU.EmEx.Scat[i,wlem<=(-1*wlex[i]/(0.00036*wlex[i]-1)+10) & wlem >=(-1*wlex[i]/(0.00036*wlex[i]-1)-10),k]=NA #Removes band of 1st order Raman
-            #cube.RU.EmEx.Scat[i,wlem<=(1.3*wlex[i]-38),k]=NA #Removes bottom-right below 1st order Raman
-            cube.RU.EmEx.Scat[i,wlem<=(2*wlex[i]+16) & wlem >=(2*wlex[i]-10),k]=NA #Removes band of 2nd order Rayleigh
-            cube.RU.EmEx.Scat[i,wlem<=(-2*wlex[i]/(0.00036*wlex[i]-1)+14) & wlem >=(-2*wlex[i]/(0.00036*wlex[i]-1)-14),k]=NA #Removes band of 2nd order Raman
-            #cube.RU.EmEx.Scat[i,wlem<=(2.32*wlex[i]-17) & wlem >=(2*wlex[i]-14),k]=NA #Removes between 2nd order Rayleigh and Raman
-            #cube.RU.EmEx.Scat[wlex<=300 & wlex>=275,wlem <= 302 & wlem >= 290,k]=NA #Remove all missed value by previous inequations
-            cube.RU.EmEx.Scat[i,wlem<=(wlex[i]-8),k]=0 #Put all data below 1st order Rayleigh equal 0
-          }
-        }
-        return(list(cube.RU.EmEx.Scat,filename,nex,nem,list.length))
-      }
+      
       return(list(cube.RU.EmEx,filename,nex,nem,list.length))
-    }
-    if(rm.scat)
-    {
-      cube.RU.Scat = cube.RU
-      for(k in 1:length(cube.RU[1,1,]))
-      {
-        for(i in 1:length(cube.RU[,1,1]))
-        {
-          #cube.RU.Scat[i,wlem =>(2*wlex[i]-15),k]=NA #Removes top left data after 2nd order Raman
-          #cube.RU.Scat[i,wlem<=(wlex[i]+14),k]=NA #Removes bottom right data below 1st order Rayleigh
-          cube.RU.Scat[i,wlem<=(wlex[i]+14) & wlem >=(wlex[i]-10),k]=NA #Removes band of 1st order Rayleigh
-          cube.RU.Scat[i,wlem<=(1.3*wlex[i]-38) & wlem >=(1.3*wlex[i]-67),k]=NA #Removes band of 1st order Raman
-          #cube.RU.Scat[i,wlem<=(1.3*wlex[i]-38),k]=NA #Removes bottom-right below 1st order Raman
-          cube.RU.Scat[i,wlem<=(2*wlex[i]+17) & wlem >=(2*wlex[i]-13),k]=NA #Removes band of 2nd order Rayleigh
-          cube.RU.Scat[i,wlem<=(2.32*wlex[i]-16) & wlem >=(2.32*wlex[i]-43),k]=NA #Removes band of 2nd order Raman
-          #cube.RU.Scat[i,wlem<=(2.32*wlex[i]-17) & wlem >=(2*wlex[i]-14),k]=NA #Removes between 2nd order Rayleigh and Raman
-          cube.RU.Scat[wlex<=300 & wlex>=275,wlem <= 302 & wlem >= 290,k]=NA #Remove all missed value by previous inequations
-          cube.RU.Scat[i,wlem<=(wlex[i]-10),k]=0 #Put all data below 1st order Rayleigh equal 0
-        }
-        return(list(cube.RU.Scat,filename,nex,nem,list.length))
       }
+    return(list(cube.RU,filename,nex,nem,list.length))
     }
-      return(list(cube.RU,filename,nex,nem,list.length))
-  }
-  if(EmEx.cor)
-  {
-    file.Em = read.csv(choose.files(caption = "Select Emission correction file"))
-    file.Ex = read.csv(choose.files(caption = "Select Excitation correction file"))
-    Ex.cor = as.numeric(na.omit(file.Ex[match(round(file.Ex[,1]),wlex),2]))
-    Em.cor = t(as.numeric(na.omit(file.Em[match(round(file.Em[,1]),wlem),2])))
-    Cor.mat = Ex.cor %*% Em.cor
-    cube.EmEx = cube
-    for(k in 1:length(cube[1,1,]))
+    if(EmEx.cor)
     {
-      cube.EmEx[,,k] = cube[,,k] * Cor.mat
-    }
-    if(rm.scat)
-    {
-      cube.EmEx.Scat = cube.EmEx
-      for(k in 1:length(cube.EmEx[1,1,]))
+      file.Em = read.csv(choose.files(caption = "Select Emission correction file"))
+      file.Ex = read.csv(choose.files(caption = "Select Excitation correction file"))
+      Ex.cor = as.numeric(na.omit(file.Ex[match(round(file.Ex[,1]),wlex),2]))
+      Em.cor = t(as.numeric(na.omit(file.Em[match(round(file.Em[,1]),wlem),2])))
+      Cor.mat = Ex.cor %*% Em.cor
+      cube.EmEx = cube
+      for(k in 1:length(cube[1,1,]))
       {
-        for(i in 1:length(cube.EmEx[,1,1]))
-        {
-          #cube.EmEx.Scat[i,wlem =>(2*wlex[i]-15),k]=NA #Removes top left data after 2nd order Raman
-          #cube.EmEx.Scat[i,wlem<=(wlex[i]+14),k]=NA #Removes bottom right data below 1st order Rayleigh
-          cube.EmEx.Scat[i,wlem<=(wlex[i]+14) & wlem >=(wlex[i]-10),k]=NA #Removes band of 1st order Rayleigh
-          cube.EmEx.Scat[i,wlem<=(1.3*wlex[i]-38) & wlem >=(1.3*wlex[i]-67),k]=NA #Removes band of 1st order Raman
-          #cube.EmEx.Scat[i,wlem<=(1.3*wlex[i]-38),k]=NA #Removes bottom-right below 1st order Raman
-          cube.EmEx.Scat[i,wlem<=(2*wlex[i]+17) & wlem >=(2*wlex[i]-13),k]=NA #Removes band of 2nd order Rayleigh
-          cube.EmEx.Scat[i,wlem<=(2.32*wlex[i]-16) & wlem >=(2.32*wlex[i]-43),k]=NA #Removes band of 2nd order Raman
-          #cube.EmEx.Scat[i,wlem<=(2.32*wlex[i]-17) & wlem >=(2*wlex[i]-14),k]=NA #Removes between 2nd order Rayleigh and Raman
-          cube.EmEx.Scat[wlex<=300 & wlex>=275,wlem <= 302 & wlem >= 290,k]=NA #Remove all missed value by previous inequations
-          cube.EmEx.Scat[i,wlem<=(wlex[i]-10),k]=0 #Put all data below 1st order Rayleigh equal 0
-        }
+        cube.EmEx[,,k] = cube[,,k] * Cor.mat
       }
-      return(list(cube.EmEx.Scat,filename,nex,nem,list.length))
-    }
     return(list(cube.EmEx,filename,nex,nem,list.length))
-  }
-  if(rm.scat)
-  {
-    cube.Scat = cube
-    for(k in 1:length(cube[1,1,]))
-    {
-      for(i in 1:length(cube[,1,1]))
-      {
-        #cube.Scat[i,wlem =>(2*wlex[i]-15),k]=NA #Removes top left data after 2nd order Raman
-        #cube.Scat[i,wlem<=(wlex[i]+14),k]=NA #Removes bottom right data below 1st order Rayleigh
-        cube.Scat[i,wlem<=(wlex[i]+14) & wlem >=(wlex[i]-10),k]=NA #Removes band of 1st order Rayleigh
-        cube.Scat[i,wlem<=(1.3*wlex[i]-38) & wlem >=(1.3*wlex[i]-67),k]=NA #Removes band of 1st order Raman
-        #cube.Scat[i,wlem<=(1.3*wlex[i]-38),k]=NA #Removes bottom-right below 1st order Raman
-        cube.Scat[i,wlem<=(2*wlex[i]+17) & wlem >=(2*wlex[i]-13),k]=NA #Removes band of 2nd order Rayleigh
-        cube.Scat[i,wlem<=(2.32*wlex[i]-16) & wlem >=(2.32*wlex[i]-43),k]=NA #Removes band of 2nd order Raman
-        #cube.Scat[i,wlem<=(2.32*wlex[i]-17) & wlem >=(2*wlex[i]-14),k]=NA #Removes between 2nd order Rayleigh and Raman
-        cube.Scat[wlex<=300 & wlex>=275,wlem <= 302 & wlem >= 290,k]=NA #Remove all missed value by previous inequations
-        cube.Scat[i,wlem<=(wlex[i]-10),k]=0 #Put all data below 1st order Rayleigh equal 0
-      }
     }
-    return(list(cube.Scat,filename,nex,nem,list.length))
-  }
 	return(list(cube,filename,nex,nem,list.length))
+  }
 }
