@@ -11,5 +11,4 @@ source('Analyse & script R/plot.integrate.RAMAN.go.R')
 require(stringr)
 require(stringdist)
 
- cube=PARAFAC.cube.design(getwd(),samplepercsv = 4)
-
+cube=PARAFAC.cube.design()
