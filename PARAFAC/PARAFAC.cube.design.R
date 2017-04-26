@@ -25,14 +25,14 @@
 
 
 
-PARAFAC.cube.design = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, samplepercsv = 1,Subtract.Blank = T, RU = T, rm.corner=T, EmEx.cor = T, Inner=T,pathlength = 1, split="_")
+PARAFAC.cube.design = function(path =getwd(), excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, samplepercsv = 1,Subtract.Blank = T, RU = T, rm.corner=T, EmEx.cor = T, Inner=T,pathlength = 1, split="_")
 {
   wlex <- seq(excitation[1], excitation[2], excitation[3])
   wlem <- seq(emission[1], emission[2], emission[3])
   nex <- length(wlex)
   nem  <- length(wlem)
 
-	setwd(path)
+	setwd(".\\data")
 	
 	file.dir = list.files()
 	nano.temp = grep("nano", file.dir)
@@ -117,7 +117,7 @@ PARAFAC.cube.design = function(path, excitation = c(220,450,5), emission = c(230
 	}
 	if(Inner)
 	{
-	  cube = InnerFilter(path, cube, excitation, emission, pathlength)
+	  cube = InnerFilter(path, cube, excitation, emission, pathlength,filename)
 	}
 
 	if(rm.corner)
@@ -145,8 +145,8 @@ PARAFAC.cube.design = function(path, excitation = c(220,450,5), emission = c(230
     
     if(EmEx.cor)
     {
-      file.Em = read.csv("D:/Université/GitHub/Paysage-brassicole/Emcorr_220 to 600.csv")
-      file.Ex = read.csv("D:/Université/GitHub/Paysage-brassicole/Excorr.csv")
+      file.Em = read.csv("../Emcorr_220 to 600.csv")
+      file.Ex = read.csv("../Excorr.csv")
       Ex.cor = as.numeric(na.omit(file.Ex[match(round(file.Ex[,1]),wlex),2]))
       Em.cor = t(as.numeric(na.omit(file.Em[match(round(file.Em[,1]),wlem),2])))
       Cor.mat = Ex.cor %*% Em.cor
@@ -161,8 +161,8 @@ PARAFAC.cube.design = function(path, excitation = c(220,450,5), emission = c(230
     }
     if(EmEx.cor)
     {
-      file.Em = read.csv(choose.files(caption = "Select Emission correction file"))
-      file.Ex = read.csv(choose.files(caption = "Select Excitation correction file"))
+      file.Em = read.csv("../Emcorr_220 to 600.csv")
+      file.Ex = read.csv("../Excorr.csv")
       Ex.cor = as.numeric(na.omit(file.Ex[match(round(file.Ex[,1]),wlex),2]))
       Em.cor = t(as.numeric(na.omit(file.Em[match(round(file.Em[,1]),wlem),2])))
       Cor.mat = Ex.cor %*% Em.cor
@@ -176,3 +176,4 @@ PARAFAC.cube.design = function(path, excitation = c(220,450,5), emission = c(230
 	return(list(cube,filename,nex,nem,list.length))
   }
 }
+
