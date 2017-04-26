@@ -12,3 +12,4 @@ require(stringr)
 require(stringdist)
 
  cube=PARAFAC.cube.design(getwd(),samplepercsv = 4)
+

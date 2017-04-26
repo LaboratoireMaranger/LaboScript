@@ -18,19 +18,20 @@ InnerFilter = function(path, cube, excitation = c(220,450,5), emission = c(230, 
 	}
 	
 	file.data = unlist(file.list)
-	
+  file.create("..\\verifyMatches.csv")
+  write.table(t(c("Target","Source","Distance")),"..\\verifyMatches.csv",append=T,sep=",",col.names = F)
+  
 	selectMinStringDist <- function(target,source)
 	{
   	dist=stringdist(target,source,method="lcs")
 	  index=which.min(dist)
-	  if((dist[index]-12)>0)warning(paste("Dist was",dist[index]-12,"for",target,source[index]))
+	  min=dist[index]
+	  #if((dist[index]-12)>0)warning(paste("Dist was",dist[index]-12,"for",target,source[index]))
+	  write.table(t(c(target,source[index],min)),"..\\verifyMatches.csv",append=T,sep=",",col.names = F)
 	  return(c(index))
 	}
 
-	#stringdist("BlondeAchouffe","CDOM/15.BlondeAchouffe.txt",method="lcs")
-	
 	index=sapply(filename,	selectMinStringDist,source=file.data)
-	#write.csv(cbind(file.data,filename),"verifyMatches.csv")
   file.data=file.data[index]
 	
 	for(i in 1:length(file.data))

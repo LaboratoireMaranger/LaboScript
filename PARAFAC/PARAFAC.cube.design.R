@@ -25,7 +25,7 @@
 
 
 
-PARAFAC.cube.design = function(path =getwd(), excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, samplepercsv = 1,Subtract.Blank = T, RU = T, rm.corner=T, EmEx.cor = T, Inner=T,pathlength = 1, split="_")
+PARAFAC.cube.design = function(path =getwd(), excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, samplepercsv = 4,Subtract.Blank = T, RU = T, rm.corner=T, EmEx.cor = T, Inner=T,pathlength = 1, split="_")
 {
   wlex <- seq(excitation[1], excitation[2], excitation[3])
   wlem <- seq(emission[1], emission[2], emission[3])
