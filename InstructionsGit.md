@@ -3,6 +3,7 @@ Voici les instructions pour utiliser Git sur votre ordinateur
 ### Installer git
 
 1. Créer un compte [GitHub](www.github.com). 
+2. Suivre (Watch) le répertoire LaboScript
 2. Installer [git](https://git-scm.com/) sur votre ordinateur.
 3. À chaque fois que vous voulez utiliser une fonctionalité de Git sur votre ordinateur vous pouvez ouvrir le GUI de git en ouvrant un menu contextuel et en cliquant sur Git GUI here
 
@@ -14,7 +15,7 @@ Après avoir initialisé votre compte GitHub vous devez cloner le répertoire GR
 1. Ouvrir le GUI de git dans un dossier (voir étape 3) 
 2. Cliquer sur **Clone Existing Repository** 
 3. Dans Source Location copier: https://github.com/RichardLaBrie/LaboScript.git
-4. Dans Target Directory identifier un fichier pour copier le répertoire (le fichier le doit pas déja exister)
+4. Dans Target Directory identifier un fichier pour copier le répertoire (le fichier ne doit pas déja exister)
 5. Cliquer sur **Clone**
 
 ![Ouvrir le GUI de Git](https://github.com/RichardLaBrie/LaboScript/blob/master/Images/Inst2.png)
