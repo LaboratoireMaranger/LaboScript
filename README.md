@@ -5,27 +5,30 @@ Script de labo
 Bienvenue dans le répertoire des scripts des Laboratoire Maranger et Lapierre à l'UdM. L'objectif de ce répertoire est de favoriser le partage de scripts et de fournir un réseau de support pour l'utilisation des différentes méthodes statistiques en recherche. 
 Vous allez trouver dans ce répertoire des scripts permettant de réaliser plusieurs analyses statistiques à l'aide de différents programmes d'analyse statistique (princiaplement R). Vous pouvez accéder aux scripts.
 
-Si vous voulez commencer à utiliser GitHub suivez les instructions suivantes: [Intaller Git](https://bitbucket.org/tutorials/markdowndemo)
+Si vous voulez commencer à utiliser GitHub suivez les instructions suivantes: [Intaller Git](https://github.com/RichardLaBrie/LaboScript/blob/master/InstructionsGit.md)
  
 
 ### Installer git
 
 1. Créer un compte [GitHub](www.github.com). 
-2. Installer [git](https://confluence.atlassian.com/bitbucket/set-up-git-744723531.html) sur votre ordinateur.
-3. Installer [SourceTree](https://www.sourcetreeapp.com/) sur votre ordinateur. 
+2. Installer [git](https://git-scm.com/) sur votre ordinateur.
+3. À chaque fois que vous voulez utiliser une fonctionalité de Git sur votre ordinateur vous pouvez ouvrir le GUI de git en ouvrant un menu contextuel et en cliquant sur Git GUI here
 
-Après avoir initialisé votre compte GitHub et téléchargé SourceTree, vous devez cloner le répertoire GRIL script sur votre ordinateur. 
+![Ouvrir le GUI de Git](https://github.com/RichardLaBrie/LaboScript/blob/master/Images/Inst1.png)
 
 ### Clone le répertoire GRIL script 
+Après avoir initialisé votre compte GitHub vous devez cloner le répertoire GRIL script sur votre ordinateur. 
 
-1. Sur la page principale du répertoire [script](https://bitbucket.org/GRIL_limno/gril_script/overview)
-2. Cliquer sur **Clone** dans le menu de droite
-3. Cliquer **Clone in Source Tree**
-4. Cliquer **Launch Application**
-5. Dans Source Tree sélectionner un dossier pour installer GRIL script
-6. Dans Source Tree Cliquer sur **Clone**
+1. Ouvrir le GUI de git dans un dossier (voir étape 3) 
+2. Cliquer sur **Clone Existing Repository** 
+3. Dans Source Location copier: https://github.com/RichardLaBrie/LaboScript.git
+4. Dans Target Directory identifier un fichier pour copier le répertoire (le fichier le doit pas déja exister)
+5. Cliquer sur **Clone**
 
-Aprčs avoir cloné le répertoire dans SourceTree, vous pouvez maintenant facilement ajouter ou télécharger des scripts.
+![Ouvrir le GUI de Git](https://github.com/RichardLaBrie/LaboScript/blob/master/Images/Inst2.png)
+
+
+Aprčs avoir cloné le répertoire il devrait être accessible sur votre ordinateur
 
 
 ### Ajouter/ modifier un ficher de GRIL script
