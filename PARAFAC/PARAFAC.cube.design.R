@@ -25,6 +25,7 @@
 
 
 
+<<<<<<< HEAD
 PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T, rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1, split = "_", skip = 1)
 {
  samplepercsv = 4
@@ -32,6 +33,15 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
  wlem = seq(emission[1], emission[2], emission[3])
  nex = length(wlex)
  nem  = length(wlem)
+=======
+PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T, rm.corner=T, EmEx.cor = T, Inner=T, pathlength = 1, split="_")
+{
+  samplepercsv = 4
+  wlex <- seq(excitation[1], excitation[2], excitation[3])
+  wlem <- seq(emission[1], emission[2], emission[3])
+  nex <- length(wlex)
+  nem  <- length(wlem)
+>>>>>>> 2bff9e8e16b216d2f0bd8e526af01ecc813e2f57
 
 	setwd(".\\data")
 	
@@ -118,7 +128,11 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
 	}
 	if(Inner)
 	{
+<<<<<<< HEAD
 	 cube = InnerFilter(path, cube, excitation, emission, pathlength, filename, skip)
+=======
+	  cube = InnerFilter(path, cube, excitation, emission, pathlength,filename)
+>>>>>>> 2bff9e8e16b216d2f0bd8e526af01ecc813e2f57
 	}
 
 	if(rm.corner)
@@ -141,6 +155,7 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
   cube.RU = cube
   for(k in 1:length(cube[1,1,]))
   {
+<<<<<<< HEAD
    cube.RU[,,k] = cube[,,k] / RAMANInt
   }
   
@@ -179,5 +194,54 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
  setwd("..")
 	return(list(cube, as.vector(unlist(filename)), wlex, wlem, list.length))
  }
+=======
+    if(Subtract.Blank == F)
+    {
+        Raman = NanoMean(path, excitation, emission, EMCOL, split=split,RU=T)
+    }
+    
+    RAMANInt = plot.integrate.RAMAN(Raman, maxF, graph=F)
+    cube.RU=cube
+    for(k in 1:length(cube[1,1,]))
+    {
+      cube.RU[,,k] <- cube[,,k]/RAMANInt
+    }
+    
+    if(EmEx.cor)
+    {
+      file.Em = read.csv("../Emcorr_220 to 600.csv")
+      file.Ex = read.csv("../Excorr.csv")
+      Ex.cor = as.numeric(na.omit(file.Ex[match(round(file.Ex[,1]),wlex),2]))
+      Em.cor = t(as.numeric(na.omit(file.Em[match(round(file.Em[,1]),wlem),2])))
+      Cor.mat = Ex.cor %*% Em.cor
+      cube.RU.EmEx = cube.RU
+      for(k in 1:length(cube.RU[1,1,]))
+      {
+        cube.RU.EmEx[,,k] = cube.RU[,,k] * Cor.mat
+      setwd("..")
+      return(list(cube.RU.EmEx,filename,wlex,wlem,list.length))
+      }
+    setwd("..")  
+    return(list(cube.RU,filename,wlex,wlem,list.length))
+    }
+    if(EmEx.cor)
+    {
+      file.Em = read.csv("../Emcorr_220 to 600.csv")
+      file.Ex = read.csv("../Excorr.csv")
+      Ex.cor = as.numeric(na.omit(file.Ex[match(round(file.Ex[,1]),wlex),2]))
+      Em.cor = t(as.numeric(na.omit(file.Em[match(round(file.Em[,1]),wlem),2])))
+      Cor.mat = Ex.cor %*% Em.cor
+      cube.EmEx = cube
+      for(k in 1:length(cube[1,1,]))
+      {
+        cube.EmEx[,,k] = cube[,,k] * Cor.mat
+      }
+    setwd("..")
+    return(list(cube.EmEx,filename,wlex,wlem,list.length))
+    }
+  setwd("..")
+	return(list(cube,filename,wlex,wlem,list.length))
+  }
+>>>>>>> 2bff9e8e16b216d2f0bd8e526af01ecc813e2f57
 }
 
