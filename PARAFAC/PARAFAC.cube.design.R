@@ -25,8 +25,9 @@
 
 
 
-PARAFAC.cube.design = function(path =getwd(), excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, samplepercsv = 4,Subtract.Blank = T, RU = T, rm.corner=T, EmEx.cor = T, Inner=T,pathlength = 1, split="_")
+PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T, rm.corner=T, EmEx.cor = T, Inner=T, pathlength = 1, split="_")
 {
+  samplepercsv = 4
   wlex <- seq(excitation[1], excitation[2], excitation[3])
   wlem <- seq(emission[1], emission[2], emission[3])
   nex <- length(wlex)
@@ -154,10 +155,11 @@ PARAFAC.cube.design = function(path =getwd(), excitation = c(220,450,5), emissio
       for(k in 1:length(cube.RU[1,1,]))
       {
         cube.RU.EmEx[,,k] = cube.RU[,,k] * Cor.mat
-      
-      return(list(cube.RU.EmEx,filename,nex,nem,list.length))
+      setwd("..")
+      return(list(cube.RU.EmEx,filename,wlex,wlem,list.length))
       }
-    return(list(cube.RU,filename,nex,nem,list.length))
+    setwd("..")  
+    return(list(cube.RU,filename,wlex,wlem,list.length))
     }
     if(EmEx.cor)
     {
@@ -171,9 +173,11 @@ PARAFAC.cube.design = function(path =getwd(), excitation = c(220,450,5), emissio
       {
         cube.EmEx[,,k] = cube[,,k] * Cor.mat
       }
-    return(list(cube.EmEx,filename,nex,nem,list.length))
+    setwd("..")
+    return(list(cube.EmEx,filename,wlex,wlem,list.length))
     }
-	return(list(cube,filename,nex,nem,list.length))
+  setwd("..")
+	return(list(cube,filename,wlex,wlem,list.length))
   }
 }
 

@@ -1,17 +1,11 @@
 # LaboScript
 Script de labo
 
-([English version](https://bitbucket.org/GRIL_limno/gril_script/src/9c327eef75dd7bbfe19ee6c640ebfd0c68574230/README_En.md?fileviewer=file-view-default)) 
 
+Bienvenue dans le répertoire des scripts des Laboratoire Maranger et Lapierre à l'UdM. L'objectif de ce répertoire est de favoriser le partage de scripts et de fournir un réseau de support pour l'utilisation des différentes méthodes statistiques en recherche. 
+Vous allez trouver dans ce répertoire des scripts permettant de réaliser plusieurs analyses statistiques à l'aide de différents programmes d'analyse statistique (princiaplement R). Vous pouvez accéder aux scripts.
 
-Bienvenue dans le répertoire des scripts. L'objectif de ce répertoire est de favoriser le partage de scripts et de fournir un réseau de support pour l'utilisation des différentes méthodes statistiques en recherche. 
-
-### Quels sont les objectifs de ce répertoire?
-
-Vous allez trouver dans ce répertoire des scripts permettant de réaliser plusieurs analyses statistiques à l'aide de différents programmes d'analyse statistique (comme R). Vous pouvez accéder aux scripts en ligne sur GitHub ou encore sur votre ordinateur en utilisant SourceTree.
-
-* Version
-* [Apprendre Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Si vous voulez commencer à utiliser GitHub suivez les instructions suivantes: [Intaller Git](https://bitbucket.org/tutorials/markdowndemo)
  
 
 ### Installer git
