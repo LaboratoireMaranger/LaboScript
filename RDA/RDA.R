@@ -5,7 +5,7 @@
 #  RDA with variable selection (AIC),
 #  Lakes are colored by group
 #
-#
+#modif for test
 ####################################################################
 
 # clean the memory
