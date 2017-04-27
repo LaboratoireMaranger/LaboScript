@@ -20,12 +20,19 @@ Après avoir initialisé votre compte GitHub vous devez cloner le répertoire GR
 ![Ouvrir le GUI de Git](https://github.com/RichardLaBrie/LaboScript/blob/master/Images/Inst2.png)
 
 
-Aprčs avoir cloné le répertoire il devrait être accessible sur votre ordinateur
+Après avoir cloné le répertoire il devrait être accessible sur votre ordinateur
 
+### Comment travailler avec Git
 
-### Ajouter/ modifier un ficher de GRIL script
+Avant de travailler sur un fichier Git il faut toujours faire un *"pull"* afin d'avoir la version la plus récente et déviter les conflits:
 
-1. Sauver le fichier dans votre dossier BitBucket local
+1. Aller dans le répertoire sur votre ordinateur et ouvrir le GUI Git (voir étape 3)
+2. Cliquer sur Remote/fetch from /origin / close
+2. Cliquer sur Merge/ local Merge (ou ctrl-M)/ merge
+
+Maintenant vous pouvez travailler dans le dossier normalement, vous pouvez ajouter, modifier et éffacer des fichiers
+
+Sauver le fichier dans votre dossier BitBucket local
 2. Dans la section **Unstaged files** , cliquer la boite à côté du fichier que vous avez modifié
 3. Cliquer sur **Commit** dans le menu du haut
 4. Décrire ce que vous avez changé en utilisant le format suivant: 
