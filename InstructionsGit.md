@@ -30,7 +30,19 @@ Avant de travailler sur un fichier Git il faut toujours faire un *"pull"* afin d
 2. Cliquer sur Remote/fetch from /origin / close
 2. Cliquer sur Merge/ local Merge (ou ctrl-M)/ merge
 
-Maintenant vous pouvez travailler dans le dossier normalement, vous pouvez ajouter, modifier et éffacer des fichiers
+Maintenant vous pouvez travailler dans le dossier normalement, vous pouvez ajouter, modifier et effacer des fichiers. Quand vous avez terminé vos modifications il faut mettre à jour (*"push"*) le répertoire en ligne (sur GitHub). 
+
+1. Aller dans le répertoire sur votre ordinateur et ouvrir le GUI Git (voir étape 3)
+2. Vous allez voir les fichier que vous avez modifié dans la section *"Unstaged Changes"*
+
+![Ouvrir le GUI de Git](https://github.com/RichardLaBrie/LaboScript/blob/master/Images/Inst3.1.png)
+
+
+3. Vous devez mettre les changements que vous voulez mettre à jour dans le section *"Staged Changes"* sois en sélectionnant le fichier puis en appuyant sur Ctrl-T ou en appuyant sur Ctrl-I pour *"Stager"* tous les fichiers
+4. Par la suite il faut ajouter un message expliquant ce que nous vous avez changé dans la section *"commit message"* puis cliquer sur *"Commit"* 
+
+![Ouvrir le GUI de Git](https://github.com/RichardLaBrie/LaboScript/blob/master/Images/Inst3.png)
+
 
 Sauver le fichier dans votre dossier BitBucket local
 2. Dans la section **Unstaged files** , cliquer la boite à côté du fichier que vous avez modifié
