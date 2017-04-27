@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 PlotAllEEM <- function(cube, zlim = c(0,1), ExportPDF = T)
 {
 	setwd(getwd())
@@ -17,17 +16,4 @@ PlotAllEEM <- function(cube, zlim = c(0,1), ExportPDF = T)
 	{
     dev.off()
 	}
-=======
-PlotAllEEM <- function(cube,zlim=c(0,1))
-{
-	setwd(getwd())
-	pdf("EEM.pdf")
-	for(i in 1:cube[[5]])
-	{
-		filled.contour(cube[[3]], cube[[4]], unlist(cube[[1]])[,,i],color.palette=myPalette,
-		xlab="Excitation (nm)", ylab="Emission (nm)",
-		main=unlist(cube[[2]])[i], zlim = zlim, nlevels=50)
-	}
-	dev.off()
->>>>>>> 2bff9e8e16b216d2f0bd8e526af01ecc813e2f57
  }

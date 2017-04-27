@@ -15,22 +15,14 @@ NanoMean = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), 
 	
 	file.dir = list.files()
 	fdom.temp = grep("FDOM", file.dir)
-<<<<<<< HEAD
 	cdom.temp = grep("CDOM", file.dir)
-=======
-	cdom.temp = grep("CDOM",file.dir)
->>>>>>> 2bff9e8e16b216d2f0bd8e526af01ecc813e2f57
 	file.dir = file.dir[-fdom.temp]
 	file.dir = file.dir[-cdom.temp]
 	file.list = list()
 
 	for(i in 1:length(file.dir))
 	{
-<<<<<<< HEAD
 	  file.list[[i]] = paste(file.dir[i], "/", list.files(file.dir[i]), sep = "")
-=======
-	  file.list[[i]] = paste(file.dir[i],"/",list.files(file.dir[i]),sep="")
->>>>>>> 2bff9e8e16b216d2f0bd8e526af01ecc813e2f57
 	}
 	file.data = unlist(file.list)
   
