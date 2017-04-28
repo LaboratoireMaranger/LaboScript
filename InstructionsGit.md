@@ -41,10 +41,10 @@ Maintenant vous pouvez travailler dans le dossier normalement, vous pouvez ajout
 
 3. Vous devez mettre les changements que vous voulez mettre à jour dans le section *"Staged Changes"* sois en sélectionnant le fichier puis en appuyant sur Ctrl-T ou en appuyant sur Ctrl-I pour *"Stager"* tous les fichiers
 4. Par la suite il faut ajouter un message expliquant ce que nous vous avez changé dans la section *"commit message"* puis cliquer sur *"Commit"* 
-
+5. Finalement il faut appuyer sur *"Push"* pour finaliser la mise à jour
 ![Ouvrir le GUI de Git](https://github.com/RichardLaBrie/LaboScript/blob/master/Images/Inst3.png)
 
-## Aidez-moi j'ai un problčme!
+## Aidez-moi j'ai un problème!
 
 Si vous avez un problème ou une question sur un script vous pouvez les reporter directement sur le repertoire GitHub dans la section Issues.
 
