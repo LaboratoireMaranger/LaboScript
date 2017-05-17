@@ -9,7 +9,7 @@ Voici les instructions pour utiliser Git sur votre ordinateur
 
 ![Ouvrir le GUI de Git](https://github.com/RichardLaBrie/LaboScript/blob/master/Images/Inst1.png)
 
-### Clone le répertoire GRIL script 
+### Clone le répertoire  LaboScript 
 Après avoir initialisé votre compte GitHub vous devez cloner le répertoire GRIL script sur votre ordinateur. 
 
 1. Ouvrir le GUI de git dans un dossier (voir étape 3) 
